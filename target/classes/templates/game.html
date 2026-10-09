@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Игра — King of the Words</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main class="card center">
+    <p class="badge"><span th:text="${category.icon()}">🎬</span> <span th:text="${category.title()}">Фильмы</span></p>
+    <h1>Отгадай слово</h1>
+    <p class="subtitle">Букв в слове: <b th:text="${length}">6</b></p>
+
+    <div id="board" class="board" th:attr="data-length=${length}">
+        <input th:each="i : ${#numbers.sequence(1, length)}"
+               class="cell" type="text" maxlength="1"
+               autocomplete="off" autocapitalize="characters" spellcheck="false">
+    </div>
+
+    <button id="okBtn" class="btn" type="button">ОК</button>
+    <a class="link" th:href="@{/categories}">← Другая категория</a>
+</main>
+
+<dialog id="resultDialog" class="dialog">
+    <div id="dialogIcon" class="dialog-icon"></div>
+    <h2 id="dialogTitle"></h2>
+    <p id="dialogText"></p>
+    <div class="dialog-actions">
+        <a id="againBtn" class="btn" href="#" th:href="@{/game/{key}(key=${category.key()})}">Ещё раз</a>
+        <a class="btn secondary" th:href="@{/categories}">Категории</a>
+    </div>
+</dialog>
+
+<script th:src="@{/js/game.js}"></script>
+</body>
+</html>

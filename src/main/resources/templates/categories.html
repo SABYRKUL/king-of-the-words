@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Выбери категорию — King of the Words</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main class="card center">
+    <h1>Выбери категорию</h1>
+    <div class="grid">
+        <a class="category" th:each="c : ${categories}" th:href="@{/game/{key}(key=${c.key()})}">
+            <span class="icon" th:text="${c.icon()}">🎬</span>
+            <span th:text="${c.title()}">Фильмы</span>
+        </a>
+    </div>
+    <a class="link" th:href="@{/}">← На главную</a>
+</main>
+</body>
+</html>

@@ -1,0 +1,167 @@
+:root {
+    --bg1: #1b1464;
+    --bg2: #6a11cb;
+    --gold: #ffd54a;
+    --card: rgba(255, 255, 255, 0.10);
+    --text: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    padding: 16px;
+}
+
+.card {
+    width: 100%;
+    max-width: 760px;
+    background: var(--card);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 40px 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.center { text-align: center; }
+
+.crown { font-size: 72px; }
+
+h1 { font-size: 2.2rem; margin: 8px 0 12px; line-height: 1.2; }
+.accent { color: var(--gold); font-size: 2.8rem; }
+.subtitle { opacity: 0.85; margin: 0 0 24px; font-size: 1.1rem; }
+
+.badge {
+    display: inline-block;
+    background: rgba(255, 213, 74, 0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin: 0 0 8px;
+    font-weight: 600;
+}
+
+.btn {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    background: var(--gold);
+    color: #2b1b00;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 14px 44px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 6px 0 #c9a100;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(3px); box-shadow: 0 3px 0 #c9a100; }
+.btn.secondary { background: #ffffff; color: #1b1464; box-shadow: 0 6px 0 #b5b5d0; }
+
+.link {
+    display: block;
+    margin-top: 24px;
+    color: #ffffff;
+    opacity: 0.75;
+    text-decoration: none;
+}
+.link:hover { opacity: 1; text-decoration: underline; }
+
+/* Категории */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+.category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 12px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid transparent;
+    border-radius: 18px;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+}
+.category:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.2);
+}
+.category .icon { font-size: 44px; }
+
+/* Игровое поле */
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 28px 0 32px;
+}
+.cell {
+    width: 52px;
+    height: 64px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1b1464;
+    background: #fff;
+    border: 3px solid var(--gold);
+    border-radius: 10px;
+    outline: none;
+    caret-color: transparent;
+}
+.cell:focus {
+    background: #fff7d1;
+    box-shadow: 0 0 0 4px rgba(255, 213, 74, 0.5);
+}
+.cell.shake { animation: shake 0.4s; border-color: #ff5252; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* Диалог результата */
+.dialog {
+    border: none;
+    border-radius: 22px;
+    padding: 32px 36px;
+    max-width: 420px;
+    width: calc(100% - 32px);
+    text-align: center;
+    color: #1b1464;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.dialog::backdrop { background: rgba(10, 5, 40, 0.7); }
+.dialog-icon { font-size: 64px; }
+.dialog h2 { margin: 8px 0; font-size: 1.8rem; }
+.dialog p { margin: 0 0 20px; font-size: 1.1rem; }
+.dialog.win h2 { color: #1a9e4a; }
+.dialog.lose h2 { color: #d32f2f; }
+.dialog-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.dialog-actions .btn { font-size: 1.05rem; padding: 10px 24px; }
+
+@media (max-width: 520px) {
+    h1 { font-size: 1.6rem; }
+    .accent { font-size: 2rem; }
+    .cell { width: 42px; height: 54px; font-size: 1.5rem; }
+}
